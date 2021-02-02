@@ -1,0 +1,19 @@
+<resources>
+	<string name="app_name">FinTech test app</string>
+	<string name="shared_prefs">fin_tech_share_pref</string>
+
+	<string name="unlock">Unlock</string>
+	<string name="bank_accounts">Bank accounts</string>
+	<string name="card_statement">Card statement</string>
+
+	<string name="card_number">**** %1$s</string>
+	<string name="balance">%1$.2f %2$s</string>
+	<string name="visa">Visa</string>
+	<string name="master_card">MasterCard</string>
+	<string name="maestro">Maestro</string>
+	<string name="supply_template">+%1$.2f</string>
+	<string name="pay_template">-%1$.2f</string>
+	<string name="p2p_template">P2P %1$s %2$s</string>
+	<string name="supply_text_template">Supply for **** %1$s</string>
+	<string name="cash_withdraw_template">Cash Withdrawal from **** %1$s</string>
+</resources>

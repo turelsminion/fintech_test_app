@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:layout_marginStart="16dp"
+	android:layout_marginTop="12dp"
+	android:layout_marginEnd="16dp">
+
+	<ImageView
+		android:id="@+id/cardTypeImage"
+		android:layout_width="32dp"
+		android:layout_height="32dp"
+		android:layout_centerVertical="true"
+		android:layout_marginStart="8dp" />
+
+	<TextView
+		android:id="@+id/cardTypeName"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="8dp"
+		android:layout_toEndOf="@+id/cardTypeImage" />
+
+	<TextView
+		android:id="@+id/cardNumber"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/cardTypeName"
+		android:layout_marginStart="8dp"
+		android:layout_toEndOf="@+id/cardTypeImage"/>
+
+	<TextView
+		android:id="@+id/balance"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentEnd="true"
+		android:layout_centerVertical="true"
+		android:layout_marginEnd="8dp" />
+
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:layout_below="@id/cardNumber"
+		android:layout_marginTop="4dp"
+		android:background="@color/black" />
+
+</RelativeLayout>
