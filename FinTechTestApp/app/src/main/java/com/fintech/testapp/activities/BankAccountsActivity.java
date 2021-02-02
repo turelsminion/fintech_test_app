@@ -58,7 +58,6 @@ public class BankAccountsActivity extends BaseActivity {
 			startActivity(BankAccountActivity.getNewIntent(this, model));
 		};
 
-		mRepository.getLocalDataStore().clearAllDataBase();
 		//init data
 		this.bankAccountList = mRepository.getLocalDataStore().getBankAccounts();
 		if (this.bankAccountList == null || this.bankAccountList.size() == 0)
