@@ -19,6 +19,9 @@ import com.fintech.testapp.util.Utils;
 import java.text.ParseException;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class BankAccountAdapter extends RecyclerView.Adapter<BankAccountAdapter.StatementViewHolder> {
 
 	private static final String TAG = "BankAccountAdapter";
@@ -62,17 +65,14 @@ public class BankAccountAdapter extends RecyclerView.Adapter<BankAccountAdapter.
 
 	class StatementViewHolder extends RecyclerView.ViewHolder {
 
-		ImageView statementTypeImage;
-		TextView statementText;
-		TextView statementDate;
-		TextView statementCount;
+		@BindView(R.id.statementTypeImage) ImageView statementTypeImage;
+		@BindView(R.id.statementText) TextView statementText;
+		@BindView(R.id.statementDate) TextView statementDate;
+		@BindView(R.id.statementCount) TextView statementCount;
 
 		public StatementViewHolder(@NonNull View itemView) {
 			super(itemView);
-			statementTypeImage = itemView.findViewById(R.id.statementTypeImage);
-			statementText = itemView.findViewById(R.id.statementText);
-			statementDate = itemView.findViewById(R.id.statementDate);
-			statementCount = itemView.findViewById(R.id.statementCount);
+			ButterKnife.bind(this, itemView);
 		}
 
 		private void bindView(int position) {

@@ -16,6 +16,9 @@ import com.fintech.testapp.data.local.model.BankAccountModel;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class BankAccountsAdapter extends RecyclerView.Adapter<BankAccountsAdapter.ViewHolder> {
 
 	private final static String TAG = "BankAccountsAdapter";
@@ -61,20 +64,16 @@ public class BankAccountsAdapter extends RecyclerView.Adapter<BankAccountsAdapte
 	}
 
 	class ViewHolder extends RecyclerView.ViewHolder {
-
-		ImageView cardTypeImage;
-		TextView cardType;
-		TextView cardNumber;
-		TextView balance;
+		@BindView(R.id.cardTypeImage) ImageView cardTypeImage;
+		@BindView(R.id.cardTypeName) TextView cardType;
+		@BindView(R.id.cardNumber) TextView cardNumber;
+		@BindView(R.id.balance) TextView balance;
 
 		public ViewHolder(@NonNull View itemView) {
 			super(itemView);
 			itemView.setTag(this);
 			itemView.setOnClickListener(onItemClickListener);
-			cardTypeImage = itemView.findViewById(R.id.cardTypeImage);
-			cardType = itemView.findViewById(R.id.cardTypeName);
-			cardNumber = itemView.findViewById(R.id.cardNumber);
-			balance = itemView.findViewById(R.id.balance);
+			ButterKnife.bind(this, itemView);
 		}
 
 		private void bindView(int position) {
