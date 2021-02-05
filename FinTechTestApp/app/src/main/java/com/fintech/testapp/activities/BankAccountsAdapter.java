@@ -23,25 +23,28 @@ public class BankAccountsAdapter extends RecyclerView.Adapter<BankAccountsAdapte
 
 	private final static String TAG = "BankAccountsAdapter";
 
-	private Context context;
-	private List<BankAccountModel> list;
-	private View.OnClickListener onItemClickListener;
-
-	public BankAccountsAdapter(Context context, List<BankAccountModel> list) {
-		this.context = context;
-		this.list = list;
+	public interface OnItemClickListener {
+		void onItemClick(BankAccountModel model);
 	}
 
-	public void setItemClickListener(View.OnClickListener clickListener) {
-		onItemClickListener = clickListener;
+	private Context context;
+	private List<BankAccountModel> list;
+	private OnItemClickListener listener;
+
+	public BankAccountsAdapter(Context context, List<BankAccountModel> list, OnItemClickListener listener) {
+		this.context = context;
+		this.list = list;
+		this.listener = listener;
 	}
 
 	@NonNull
 	@Override
 	public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-		View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_bank_account, parent, false);
+		final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_bank_account, parent, false);
+		final ViewHolder result = new ViewHolder(view);
+		view.setOnClickListener(v -> listener.onItemClick(list.get(result.getAdapterPosition())));
 
-		return new ViewHolder(view);
+		return result;
 	}
 
 	@Override
@@ -71,8 +74,6 @@ public class BankAccountsAdapter extends RecyclerView.Adapter<BankAccountsAdapte
 
 		public ViewHolder(@NonNull View itemView) {
 			super(itemView);
-			itemView.setTag(this);
-			itemView.setOnClickListener(onItemClickListener);
 			ButterKnife.bind(this, itemView);
 		}
 
