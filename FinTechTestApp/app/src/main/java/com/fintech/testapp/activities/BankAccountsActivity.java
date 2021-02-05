@@ -25,7 +25,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class BankAccountsActivity extends BaseActivity {
+public class BankAccountsActivity extends BaseActivity implements BankAccountsAdapter.OnItemClickListener {
 
 	private static final String TAG = BankAccountsActivity.class.getSimpleName();
 
@@ -33,7 +33,6 @@ public class BankAccountsActivity extends BaseActivity {
 	RecyclerView recyclerView;
 
 	private List<BankAccountModel> bankAccountList;
-	private View.OnClickListener onItemClickListener;
 	private BankAccountsAdapter adapter;
 
 	@Override
@@ -50,26 +49,17 @@ public class BankAccountsActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		ButterKnife.bind(this);
 
-		onItemClickListener = v -> {
-			RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) v.getTag();
-			int position = viewHolder.getAdapterPosition();
-
-			BankAccountModel model = bankAccountList.get(position);
-			startActivity(BankAccountActivity.getNewIntent(this, model));
-		};
-
 		//init data
 		this.bankAccountList = mRepository.getLocalDataStore().getBankAccounts();
 		if (this.bankAccountList == null || this.bankAccountList.size() == 0)
 			initDummyData();
 
 		//setup recycler view
-		adapter = new BankAccountsAdapter(this, new ArrayList<>());
+		adapter = new BankAccountsAdapter(this, new ArrayList<>(), this::onItemClick);
 		LinearLayoutManager llm = new LinearLayoutManager(this);
 		recyclerView.setLayoutManager(llm);
 		recyclerView.setItemAnimator(new DefaultItemAnimator());
 		recyclerView.setAdapter(adapter);
-		adapter.setItemClickListener(onItemClickListener);
 		adapter.updateBankAccountsListItems(this.bankAccountList);
 	}
 
@@ -100,5 +90,10 @@ public class BankAccountsActivity extends BaseActivity {
 		Collections.sort(bankAccountList, (o1, o2) -> o1.getId() - o2.getId());
 
 		mRepository.getLocalDataStore().saveBankAccount(bankAccountList);
+	}
+
+	@Override
+	public void onItemClick(BankAccountModel model) {
+		startActivity(BankAccountActivity.getNewIntent(this, model));
 	}
 }
